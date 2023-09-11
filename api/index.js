@@ -1,0 +1,48 @@
+const express = require('express');
+const cors = require('cors')
+const mongoose = require('mongoose');
+var passport = require('passport');
+var routes = require('./routes/index');
+const errHandle = require("./auth/error-handle")
+
+// Need to require the entire Passport config module so app.js knows about it
+require('dotenv').config()
+
+/**
+ * -------------- GENERAL SETUP ----------------
+ */
+
+var app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(cors({
+    origin: 'http://127.0.0.1:5173'
+}))
+app.use('/upload',express.static(__dirname+'/upload'))
+
+/**
+ * -------------- SESSION SETUP ----------------
+ */
+
+
+/**
+ * -------------- PASSPORT AUTHENTICATION ----------------
+ */
+
+
+/**
+ * -------------- ROUTES ----------------
+ */
+
+app.use(routes);
+
+/**
+ * -------------- SERVER ----------------
+ */
+// connect DB
+mongoose.connect(process.env.URI_DB).then((re)=>console.log("oke")).catch((err)=>console.log(err))
+app.use(errHandle)
+
+// Server listens on http://localhost:3000
+app.listen(4000);
+
