@@ -32,7 +32,7 @@ const vuetify = createVuetify({
 });
 
 /** AXIOS SETUP */
-axios.defaults.baseURL = "http://127.0.0.1:4000";
+// axios.defaults.baseURL = "http://127.0.0.1:4000";
 axios.interceptors.request.use(
   function (config) {
     localStorage.getItem("token")
