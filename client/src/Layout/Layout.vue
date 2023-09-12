@@ -1,19 +1,16 @@
 <template>
-    <div>
-        <Header />
-        <router-view class="m-10 p-10"></router-view>
-    </div>
+  <div class="bg-white">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import Header from './Header.vue';
+import Header from "./Header.vue";
 export default {
-components: {
+  components: {
     Header,
-  }
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
