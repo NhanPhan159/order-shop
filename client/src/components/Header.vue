@@ -5,14 +5,16 @@
   <div class="sticky">
     <div class="max-w-screen-xl px-4 py-2 flex m-auto items-center text-slate-500">
       <div>
-        <img src="../../../assets/logo.png" alt="logo" />
+        <router-link to="/">
+          <img src="../assets/logo.png" alt="logo" />
+        </router-link>
       </div>
       <ul class="flex ml-10 items-center gap-6">
-        <li class="hover:underline underline-offset-4 hover:cursor-pointer">Bestsellers</li>
+        <li class="hover:underline underline-offset-4 hover:cursor-pointer"><router-link to="/">Bestsellers</router-link></li>
         <li class="hover:underline underline-offset-4 hover:cursor-pointer">Rain Boots</li>
         <li class="hover:underline underline-offset-4 hover:cursor-pointer">Weekend Boots</li>
         <li class="hover:underline underline-offset-4 hover:cursor-pointer">Terrus Clogs</li>
-        <li class="hover:underline underline-offset-4 hover:cursor-pointer">Shop All</li>
+        <li class="hover:underline underline-offset-4 hover:cursor-pointer"><router-link to="/collection/all">Shop all</router-link></li>
         <li class="hover:underline underline-offset-4 hover:cursor-pointer">Values</li>
       </ul>
       <div class="flex-1"></div>
@@ -22,10 +24,13 @@
           style="font-size: 1.3rem"
           class="hover:scale-105 hover:cursor-pointer pi pi-search"
         ></span>
-        <span
-          style="font-size: 1.3rem"
-          class="hover:scale-105 hover:cursor-pointer pi pi-user"
-        ></span>
+        <router-link to="/account/login">
+          <span
+            style="font-size: 1.3rem"
+            class="hover:scale-105 hover:cursor-pointer pi pi-user"
+          >
+          </span>
+        </router-link>
         <span
           style="font-size: 1.3rem"
           class="hover:scale-105 hover:cursor-pointer pi pi-shopping-bag"
@@ -38,6 +43,8 @@
 <script setup>
 const isSticky = ref(false);
 import { ref, onMounted } from "vue";
+import { useStore } from 'vuex'
+
 
 const handleScroll = () => {
   if (window.scrollY > 0) {

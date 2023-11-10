@@ -11,10 +11,12 @@ function authorize(roles = []) {
     jwt({ 
       secret,
       algorithms: ["HS256"],
-      onExpired: async (req, err) => {
-        if (new Date() - err.inner.expiredAt < 5000) { return;}
-        throw err
-      }
+      getToken: function fromHeader(req) {
+        console.log(req.cookies);
+        if(req.cookies.access_token)
+          return req.cookies.access_token
+        return null;
+      },
       }),
     (req, res, next) => {
       if (roles.length && !roles.includes(req.auth.role)) {

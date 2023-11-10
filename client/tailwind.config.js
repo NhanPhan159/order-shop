@@ -9,6 +9,7 @@ export default {
         "menu-title": "#A15929",
         "menu-text-bill": "#8D5D55",
         "header-nav": "#F1F3FF",
+        "title-login":"#123026"
       },
       borderWidth: {
         20: "20px",

@@ -13,21 +13,17 @@ async function authenticate({ username, password }) {
   const user = await userModel.findOne({ username });
   const isValid = validPassword(password, user.hash, user.salt);
   if (isValid) {
+    const now = new Date()
+    const expiresAt = new Date(+now + 120 * 1000)
     const token = jwt.sign(
       {
         sub: user._id,
         role: user.role,
       },
       "secret",
-      { 
-        expiresIn: '1d'
-      }
     );
-    const { hash,salt,role, ...userWithoutPasswordRole } = user._doc;
-    return {
-      ...userWithoutPasswordRole,
-      token: 'Bearer '+ token,
-    };
+    const { hash,salt, ...userWithoutPassword } = user._doc;
+    return {token,expiresAt,userWithoutPassword}
   }
 }
 
@@ -39,7 +35,7 @@ async function authenticate({ username, password }) {
 // }
 
 async function getById(id) {
-  const user = await userModel.findOne({_id:id});
+  const user = await userModel.findOne({_id:id},{role:1});
   if (!user) return;
   return user;
 }

@@ -2,9 +2,15 @@ const mongo = require('mongoose')
 
 const productSchema = new mongo.Schema({
     name: String,
-    price: Number,
+    price: String,
     description: String,
-    image: String
+    image_insite: [String],
+    size: Number,
+    image_outside: [String],
+    description: String,
+    core_feature: [String],
+    quantity: Number,
+    category: String
 })
 
 const ProductModel = mongo.model('Product',productSchema)

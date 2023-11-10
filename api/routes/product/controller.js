@@ -75,13 +75,18 @@ function uploadImage(req,res,next){
 }
 
 async function addProduct(req,res,next){
-    const {name,price,description,image} = req.body
+    const {name,price,description,image_inside,image_outside,core_feature,size,quantity,category} = req.body
     try{
         const product = await ProductModel.create({
             name,
             price,
             description,
-            image
+            image_inside,
+            image_outside,
+            core_feature,
+            size,
+            quantity,
+            category
         })
         res.json("add success")
     }

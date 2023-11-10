@@ -21,6 +21,11 @@ import Dialog from "primevue/dialog";
 
 /** self define */
 import HomePage from "./pages/Home/index.vue";
+import LoginPage from "./pages/Login/index.vue"
+import ShopIndex from "./pages/Shop/index.vue"
+import ProductIndex from"./pages/product/index.vue"
+import DashboardIndex from"./pages/dashboard/index.vue"
+
 
 const vuetify = createVuetify({
   components,
@@ -28,7 +33,7 @@ const vuetify = createVuetify({
 });
 
 /** AXIOS SETUP */
-// axios.defaults.baseURL = "http://127.0.0.1:4000";
+axios.defaults.baseURL = "http://127.0.0.1:4000";
 axios.interceptors.request.use(
   function (config) {
     localStorage.getItem("token")
@@ -45,26 +50,28 @@ axios.interceptors.request.use(
 /** ROUTER SETUP */
 const router = createRouter({
   history: createWebHistory(),
-  routes: [{ path: "/", name: "home", component: HomePage }],
+  routes: [
+    { path: "/", name: "home", component: HomePage },
+    { path: "/account/login", name: "login", component: LoginPage },
+    { path: "/collection/all", name: "shop_all", component: ShopIndex },
+    { path: "/product", name: "product", component: ProductIndex },
+    { path: "/dashboard", name: "dashboard", component: DashboardIndex },
+  ],
 });
 
 /** STORE SETUP*/
 const store = createStore({
-  state() {
-    return {
-      username: "",
-      isLogin: false,
-      itemsChoiced: ["abc"],
-    };
+  state: {
+      user: null
+  },
+  getters: {
+    getRole(state){
+      return state.user ? state.user.role : 'normal user'
+    }
   },
   mutations: {
-    setDataLocal(state, payload) {
-      localStorage.setItem("token", payload.token);
-      localStorage.setItem("ids", payload.idUser);
-    },
-    setInforUser(state, Username) {
-      state.username = Username;
-      state.isLogin = true;
+    setInforUser(state, user) {
+      state.user = user
     },
   },
 });

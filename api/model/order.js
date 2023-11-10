@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema({
     isSeen: {type:Boolean, default:false},
     idCustomer: String,
     },
-    {timestamps: true},
+        
 )
 
 const OrderModel = mongoose.model('Order',orderSchema)

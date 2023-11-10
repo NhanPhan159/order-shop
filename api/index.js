@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 var passport = require('passport');
 var routes = require('./routes/index');
@@ -16,9 +17,11 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
-    origin: 'http://127.0.0.1:5173'
+    origin: 'http://localhost:5173',
 }))
+app.use(cookieParser())
 app.use('/upload',express.static(__dirname+'/upload'))
+
 
 /**
  * -------------- SESSION SETUP ----------------

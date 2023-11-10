@@ -1,15 +1,39 @@
 <template>
-  <div class="bg-white">
-    <router-view></router-view>
+  <div v-if="role == 'admin'">
+    <AdminPage/>
+  </div>
+  <div v-else>
+    <Header/>
+    <div>
+      <router-view></router-view>
+    </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Header from "./Header.vue";
+import AdminPage from "../pages/admin/index.vue"
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
+import axios from "axios";
 export default {
   components: {
     Header,
+    Footer,
+    AdminPage
   },
+  computed: {
+  role () {
+    return this.$store.getters.getRole
+  },
+},
+  beforeMount(){
+    axios.get("/account/user/role",{
+      withCredentials: true
+    })
+    .then((re)=> console.log(re))
+    .catch(()=>console.log("erroe"))
+  }
 };
 </script>
 

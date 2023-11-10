@@ -2,7 +2,7 @@
   <section>
     <div class="max-w-screen-xl mx-auto flex gap-4 text-white py-10">
       <div class="flex-1">
-        <img src="../../../assets/footerLogo.png" width="100" />
+        <img src="../assets/footerLogo.png" width="100" />
         <div class="font-semibold text-lg py-4">
           Socially and environmentally progressive outdoor footwear
         </div>
