@@ -27,12 +27,12 @@ export default {
     return this.$store.getters.getRole
   },
 },
-  beforeMount(){
+beforeMount(){
     axios.get("/account/user/role",{
       withCredentials: true
     })
-    .then((re)=> console.log(re))
-    .catch(()=>console.log("erroe"))
+    .then((re)=> this.$store.commit("setRoleUser",re.data))
+    .catch((e)=>console.log(e))
   }
 };
 </script>

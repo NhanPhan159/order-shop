@@ -5,6 +5,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 import App from "./App.vue";
 import "primeicons/primeicons.css";
+import ElementPlus from 'element-plus'
 
 /** UI */
 import { createVuetify } from "vuetify";
@@ -62,17 +63,21 @@ const router = createRouter({
 /** STORE SETUP*/
 const store = createStore({
   state: {
-      user: null
+      user: null,
+      role: 'normal user'
   },
   getters: {
     getRole(state){
-      return state.user ? state.user.role : 'normal user'
+      return state.role
     }
   },
   mutations: {
     setInforUser(state, user) {
       state.user = user
     },
+    setRoleUser(state, role){
+      state.role = role
+    }
   },
 });
 
@@ -80,4 +85,4 @@ const store = createStore({
 const app = createApp(App);
 app.component("Toast", Toast);
 app.component("Dialog", Dialog);
-app.use(store).use(vuetify).use(router).use(PrimeVue).use(ToastService).mount("#app");
+app.use(store).use(vuetify).use(router).use(PrimeVue).use(ToastService).use(ElementPlus, { size: 'small', zIndex: 3000 }).mount("#app");

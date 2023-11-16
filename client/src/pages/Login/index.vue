@@ -16,7 +16,7 @@ export default{
     },
     methods:{
         async login(){
-            const re = await axios.post("/account/login",this.loginData)
+            const re = await axios.post("/account/login",this.loginData,{withCredentials:true})
             console.log(re.data);
             this.$store.commit('setInforUser',re.data)
             this.$router.push("/dashboard")

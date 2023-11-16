@@ -1,36 +1,22 @@
 
 <template>
     <div class="h-full">
-        <Menu :model="items">
-            <template #start>
-                <div class="flex pl-2">
-                    <img src="../../../assets/logo.png" alt="">
-                </div>
-                <div>
-                    <h1 class="font-sans font-medium text-2xl ml-2 mt-5 mb-3">Quick menu</h1>
-                </div>
-            </template>
-            <template #item="{ item, label, props }">
-                <router-link v-if="item.route" v-slot="routerProps" :to="item.route" custom>
-                    <a :href="routerProps.href" v-bind="props.action">
-                        <span v-bind="props.icon" />
-                        <span v-bind="props.label">{{ label }}</span>
-                    </a>
-                </router-link>
-            </template>
-            <template #end>
-                
-            </template>
-        </Menu>
-        <Toast />
+        <div class="">
+            <img src="../../../assets/logo.png" alt="">
+        </div>
+        <div class="px-2 py-3">
+            <h1 class="text-xl font-semibold mb-4">Menu</h1>
+            <div class="flex flex-col gap-3">
+                <router-link to="/dashboard" class="hover:bg-slate-400 rounded-md p-2">Dashboard</router-link>
+                <router-link to="/product" class="hover:bg-slate-400 rounded-md p-2">Product</router-link>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import Menu from 'primevue/menu';
 export default {
     components:{
-        Menu
     },
     data() {
         return {

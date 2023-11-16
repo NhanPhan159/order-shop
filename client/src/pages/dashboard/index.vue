@@ -1,6 +1,11 @@
-<script></script>
+<script>
+import axios from 'axios';
+export default{
+    
+}
+</script>
 <template>
     <div>
-        Dashboard
+        <el-button>get cookie</el-button>
     </div>
 </template>
