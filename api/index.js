@@ -17,7 +17,8 @@ var app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
-    origin: 'http://localhost:5173',
+    credentials: true,
+    origin: ['http://192.168.0.106:5173','http://localhost:5173']
 }))
 app.use(cookieParser())
 app.use('/upload',express.static(__dirname+'/upload'))

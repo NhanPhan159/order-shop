@@ -24,8 +24,9 @@ function authenticate(req, res, next) {
     .then((result) =>
       result
         ? res
-            .cookie("acce", "asdaasdsad", {
-              secure : false,
+            .cookie("access_token", result.token, {
+              sameSite: 'None',
+              secure : true,
               httpOnly : true
             })
             .json(result.userWithoutPassword)
